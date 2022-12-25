@@ -21,3 +21,9 @@ def create_default_client(auth_token: Optional[str] = None) -> Client:
 def unauthed_client() -> Client:
     """Test fixture for providing an HTTP client that is not authenticated."""
     return create_default_client()
+
+
+@pytest.fixture
+def user_1_client(user_1_api_key: str) -> Client:
+    """Test fixture for providing an authenticated client for user_1."""
+    return create_default_client(auth_token=user_1_api_key)
