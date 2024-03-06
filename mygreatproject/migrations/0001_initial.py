@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name="ServiceUser",
+            name="User",
             fields=[
                 ("password", models.CharField(max_length=128, verbose_name="password")),
                 (

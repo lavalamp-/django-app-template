@@ -4,7 +4,7 @@ import pytest
 from faker import Faker
 from rest_framework.authtoken.models import Token
 
-from service.models import ServiceUser
+from mygreatproject.models import ServiceUser
 
 USER_1_ID = 1
 f = Faker()
