@@ -14,7 +14,7 @@ class ReverseRequestSerializer(serializers.Serializer):
 
 
 class ReverseResponseSerializer(serializers.Serializer):
-    content = serializers.CharField(required=True)
+    reversed = serializers.CharField(required=True)
 
 
 def _some_condition() -> bool:
@@ -36,4 +36,4 @@ def reverse_view(request: MyGreatProjectRequest) -> Response:
     if _some_condition():
         # When you need a 404:
         return not_found_response()
-    return success_response({"content": "".join(reversed(input))})
+    return success_response({"reversed": "".join(reversed(input))})
