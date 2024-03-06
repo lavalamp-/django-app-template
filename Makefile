@@ -1,14 +1,10 @@
-SHELL := /bin/sh
-DIR := ${CURDIR}
+SHELL := /bin/bash
 
 lint :
 	ruff mygreatproject/ tests/
 
 test :
 	pytest tests/
-
-update_requirements :
-	pip freeze > requirements.txt
 
 make_migrations :
 	python manage.py makemigrations mygreatproject
