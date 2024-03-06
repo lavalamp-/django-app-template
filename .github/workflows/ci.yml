@@ -32,8 +32,15 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: 3.11.7
+      - name: Docker Pull
+        run: docker-compose -f ci/docker-compose.yml pull -q
+      - name: Docker Run
+        run: docker-compose -f ci/docker-compose.yml up -d
       - name: Setup Dependencies
         run: python -m venv ./venv && source venv/bin/activate && python -m pip install --upgrade pip && pip install -r requirements.txt
       - run: source venv/bin/activate && python --version
       - name: Run Tests
-        run: source venv/bin/activate && make test
+        run: source venv/bin/activate && make run_python_tests
+      - name: Stop Containers
+        run: docker-compose -f ci/docker-compose.yml down
+        if: always()
