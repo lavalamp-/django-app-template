@@ -1,0 +1,16 @@
+[project]
+name = "mygreatproject"
+
+[tool.ruff]
+# E501 - line length violations
+ignore = ["E501"]
+exclude = ["mygreatproject/migrations"]
+select = [
+    # Pyflakes
+    "F",
+    # Pycodestyle
+    "E",
+    "W",
+    # isort
+    "I001"
+]
