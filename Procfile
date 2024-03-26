@@ -1,2 +1,2 @@
-web: gunicorn service.wsgi
+web: gunicorn mygreatproject.wsgi
 release: bash ./release-tasks.sh

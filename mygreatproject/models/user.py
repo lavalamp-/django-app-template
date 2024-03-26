@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
-class ServiceUser(AbstractUser):
+class User(AbstractUser):
     """This is a custom user class used for the application users."""
 
     id = models.AutoField(primary_key=True)

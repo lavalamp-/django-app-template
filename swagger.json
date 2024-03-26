@@ -1,0 +1,166 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "MyGreatProject API",
+        "description": "MyGreatProject",
+        "termsOfService": "https://www.google.com/policies/terms/",
+        "contact": {
+            "email": "contact@localhost"
+        },
+        "license": {
+            "name": "BSD License"
+        },
+        "version": "v0.1"
+    },
+    "host": "127.0.0.1:8000",
+    "schemes": [
+        "http"
+    ],
+    "basePath": "/api",
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "securityDefinitions": {
+        "Basic": {
+            "type": "basic"
+        }
+    },
+    "security": [
+        {
+            "Basic": []
+        }
+    ],
+    "paths": {
+        "/reverse": {
+            "post": {
+                "operationId": "reverse_create",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ReverseRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/ReverseResponseSerializer"
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/BadInputResponseWrapper"
+                        }
+                    }
+                },
+                "tags": [
+                    "reverse"
+                ]
+            },
+            "parameters": []
+        }
+    },
+    "definitions": {
+        "ReverseRequest": {
+            "required": [
+                "input"
+            ],
+            "type": "object",
+            "properties": {
+                "input": {
+                    "title": "Input",
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "ReverseResponse": {
+            "required": [
+                "content"
+            ],
+            "type": "object",
+            "properties": {
+                "content": {
+                    "title": "Content",
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "ReverseResponseSerializer": {
+            "required": [
+                "success",
+                "content"
+            ],
+            "type": "object",
+            "properties": {
+                "success": {
+                    "title": "Success",
+                    "type": "boolean"
+                },
+                "content": {
+                    "$ref": "#/definitions/ReverseResponse"
+                }
+            }
+        },
+        "ErrorField": {
+            "required": [
+                "message",
+                "field",
+                "code"
+            ],
+            "type": "object",
+            "properties": {
+                "message": {
+                    "title": "Message",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "field": {
+                    "title": "Field",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "code": {
+                    "title": "Code",
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "BadInputResponseWrapper": {
+            "required": [
+                "success",
+                "error_fields"
+            ],
+            "type": "object",
+            "properties": {
+                "success": {
+                    "title": "Success",
+                    "type": "boolean"
+                },
+                "message": {
+                    "title": "Message",
+                    "type": "string",
+                    "default": "Bad input",
+                    "minLength": 1
+                },
+                "error_fields": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ErrorField"
+                    }
+                }
+            }
+        }
+    }
+}
